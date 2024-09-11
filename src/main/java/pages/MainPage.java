@@ -60,6 +60,10 @@ public class MainPage {
         } while (!message.equals(SIGNUP_TEXT));
     }
 
+    /**
+     * Генерация случайного логина
+     * @return случайный логин
+     */
     public String loginGen() {
         Random random = new Random();
         int number = random.nextInt(10000);
@@ -78,13 +82,9 @@ public class MainPage {
         passField.sendKeys(PASSWORD);
         webDriver.findElement(By.xpath(LOGIN_BUTTON_XPATH)).click();
 
-
         wait.until(d -> !webDriver.findElement(By.xpath(USER_NAME_XPATH)).getText().isEmpty());
         String userNameText = webDriver.findElement(By.xpath(USER_NAME_XPATH)).getText();
 
-        System.out.println(userNameText);
-        System.out.println(login);
-        Assertions.assertTrue(userNameText.contains(login));
-
+        Assertions.assertTrue(userNameText.contains(login), "Wrong user name");
     }
 }
