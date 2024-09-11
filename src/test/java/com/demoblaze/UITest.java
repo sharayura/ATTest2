@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.MainPage;
 
 /**
+ * Класс запуска тестов
  * @author Sharapov Yuri
  */
 public class UITest extends BaseTest {
@@ -19,8 +20,6 @@ public class UITest extends BaseTest {
         MainPage mainPage = new MainPage(webDriver, wait);
         mainPage.register();
         mainPage.login();
-
-
 
     }
 }
