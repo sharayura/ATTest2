@@ -18,6 +18,7 @@ public class UITest extends BaseTest {
 
         MainPage mainPage = new MainPage(webDriver, wait);
         mainPage.register();
+        mainPage.login();
 
 
 
