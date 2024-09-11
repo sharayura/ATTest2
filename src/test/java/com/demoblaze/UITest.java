@@ -27,7 +27,8 @@ public class UITest extends BaseTest {
         categories.checkBasket();
 
         Basket basket = new Basket(webDriver, wait);
-
+        basket.checkTotalPrice(categories.getItemSum());
+        basket.placeOrder();
 
     }
 }

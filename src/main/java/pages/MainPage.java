@@ -8,15 +8,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.Random;
 
 /**
+ * Класс начальной страницы
  * @author Sharapov Yuri
  */
 public class MainPage {
-    private WebDriver webDriver;
-    private WebDriverWait wait;
+    private final WebDriver webDriver;
+    private final WebDriverWait wait;
 
     private String login;
     private static final String PASSWORD = "1";
@@ -38,6 +38,9 @@ public class MainPage {
         this.wait = wait;
     }
 
+    /**
+     * Подбирается случайное имя пользователя, еще не зарегестрированное в системе
+     */
     public void register() {
         webDriver.findElement(By.xpath(SIGNUP_MENU_XPATH)).click();
         WebElement passField = webDriver.findElement(By.xpath(SIGNUP_PASSWORD_XPATH));

@@ -14,10 +14,9 @@ import java.util.List;
  * @author Sharapov Yuri
  */
 public class Categories {
-    private WebDriver webDriver;
-    private WebDriverWait wait;
+    private final WebDriver webDriver;
+    private final WebDriverWait wait;
 
-    private List<String> categoryList;
     private int itemSum;
 
     private static final String CATEGORIES_XPATH = "//a[@id='itemc']";
@@ -33,8 +32,12 @@ public class Categories {
         this.wait = wait;
     }
 
+    public int getItemSum() {
+        return itemSum;
+    }
+
     public void checkBasket() {
-        categoryList = webDriver.findElements(By.xpath(CATEGORIES_XPATH)).stream()
+        List<String> categoryList = webDriver.findElements(By.xpath(CATEGORIES_XPATH)).stream()
                 .map(WebElement::getText).toList();
         categoryList.forEach(this::addItem);
     }
@@ -48,7 +51,7 @@ public class Categories {
         String itemPriceCatText = firstItem.findElement(By.xpath(".//h5")).getText();
         int itemPriceCat = Integer.parseInt(itemPriceCatText.substring(1));
         firstItem.findElement(By.xpath(".//a")).click();
-        wait.until(d -> webDriver.findElement(By.xpath(ADD_TO_CART_XPATH)).isDisplayed());
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(ADD_TO_CART_XPATH)));
 
         String itemPriceText = webDriver.findElement(By.xpath(PRICE_XPATH)).getText();
         int itemPrice = Integer.parseInt(itemPriceText.substring(1, itemPriceText.indexOf(" ")));
